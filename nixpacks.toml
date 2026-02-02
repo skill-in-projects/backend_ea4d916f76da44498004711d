@@ -1,0 +1,18 @@
+# Nixpacks configuration for Railway - .NET/C# Backend
+# Backend files are at root level
+
+[phases.setup]
+nixPkgs = { dotnet = "8.0" }
+
+[phases.install]
+cmds = [
+  "dotnet restore Backend.csproj"
+]
+
+[phases.build]
+cmds = [
+  "dotnet publish Backend.csproj -c Release -o /app/publish"
+]
+
+[start]
+cmd = "dotnet /app/publish/Backend.dll"
